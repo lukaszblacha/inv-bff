@@ -15,7 +15,8 @@ router.get('/:isbn', function(req, res, next) {
       title: jp.value(b, '$..title'),
       thumbnail: jp.value(b, '$..thumbnail'),
       isbn: req.params.isbn,
-      availabilityCheckUrl: inventoryServiceUrl + '/stock/' + req.params.isbn
+      availabilityCheckUrl: inventoryServiceUrl + '/stock/' + req.params.isbn,
+      requestId: req.esiOptions.headers['X-Request-ID']
     });
   });
 });
