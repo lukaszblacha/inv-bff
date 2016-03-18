@@ -5,10 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <esi:include src="https://kwasniew.github.io/menu.html" />
+    <!-- <esi:include src="https://kwasniew.github.io/menu.html" /> -->
+    <a class="include" href="https://kwasniew.github.io/menu.html"></a>
     <h1>{{ title }}</h1>
     <p><img src="{{thumbnail}}" /></p>
     <esi:include src="{{ availabilityCheckUrl }}" />
-    <esi:include src="https://kwasniew.github.io/footer.html" />
+    <a class="include" href="https://kwasniew.github.io/footer.html"></a>
+    <!-- <esi:include src="https://kwasniew.github.io/footer.html" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/1.2.0/superagent.js"></script>
+    <script>
+        var links = document.querySelectorAll('a.include');
+        Array.prototype.forEach.call(links, function(link) {
+            superagent.get(link).end(function(err, data) {
+                link.outerHTML = data.text;
+            });
+        });
+    </script>
   </body>
 </html>
