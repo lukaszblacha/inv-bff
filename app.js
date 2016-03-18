@@ -12,6 +12,14 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
+app.use(function(req, res, next) {
+  var start = new Date().getTime();
+  res.on('finish', function () {
+    console.log('Request handled in ' + (new Date().getTime() - start) + 'ms');
+  });
+  next();
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -66,6 +74,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
