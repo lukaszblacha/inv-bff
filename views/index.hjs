@@ -8,7 +8,7 @@
     <esi:include src="https://kwasniew.github.io/menu.html" />
     <h1>{{ title }}</h1>
     <p><img src="{{thumbnail}}" /></p>
-    <esi:include src="https://book-inventory-2016.herokuapp.com/stock/{{ isbn }}" />
+    <esi:include src="{{ availabilityCheckUrl }}" />
     <esi:include src="https://kwasniew.github.io/footer.html" />
   </body>
 </html>
